@@ -4,23 +4,33 @@ class HashMap(object):
         assert isinstance(size, int)
         self.array = list()
         for x in range(size):
-            self.array.append(dict())
+            self.array.append(list())
         self.size = size
         self.hash_function = hash_function
 
     def __setitem__(self, key, value):
-        key_map = self.array[hash(key) % self.size]
-        key_map[key] = value
+        key_list = self.array[hash(key) % self.size]
+        for index,item in enumerate(key_list):
+            if item[0] == key:
+                key_list[index] = key, value
+                return
+        key_list.append((key, value))
 
     def __getitem__(self, key):
-        key_map = self.array[hash(key) % self.size]
-        return key_map[key]
+        key_list = self.array[hash(key) % self.size]
+        for item in key_list:
+            if item[0] == key:
+                return item[1]
 
     def dump(self):
         print("HashMap")
         print("size: ", self.size)
         print("array: ", self.array)
 
+
+#TODO: try to implement custom hash function
+#TODO: ...
+#TODO: implement hash map like a binary tree
 
 
 def test_hashmap():
