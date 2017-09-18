@@ -1,6 +1,6 @@
 class HashMap(object):
 
-    def __init__(self, size=None, hash_function=None):
+    def __init__(self, size=None, hash_function=hash):
         assert isinstance(size, int)
         self.array = list()
         for x in range(size):
@@ -9,7 +9,7 @@ class HashMap(object):
         self.hash_function = hash_function
 
     def __setitem__(self, key, value):
-        key_list = self.array[hash(key) % self.size]
+        key_list = self.array[self.hash_function(key) % self.size]
         for index,item in enumerate(key_list):
             if item[0] == key:
                 key_list[index] = key, value
@@ -17,7 +17,7 @@ class HashMap(object):
         key_list.append((key, value))
 
     def __getitem__(self, key):
-        key_list = self.array[hash(key) % self.size]
+        key_list = self.array[self.hash_function(key) % self.size]
         for item in key_list:
             if item[0] == key:
                 return item[1]
