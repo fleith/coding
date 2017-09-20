@@ -60,3 +60,17 @@ def test_collision_on_hashmap():
     assert hm[4] == 4
     assert hm[5] == 5
     hm.dump()
+
+def test_my_custom_hash_func():
+    hm = HashMap(5, lambda key: 1)
+    hm[0] = 0
+    hm[1] = 1
+    hm[2] = 2
+    hm[3] = 3
+    hm[4] = 5
+    assert hm[0] == 0
+    assert hm[1] == 1
+    assert hm[2] == 2
+    assert hm[3] == 3
+    assert hm[4] == 5
+    hm.dump()
