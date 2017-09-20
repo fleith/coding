@@ -28,10 +28,6 @@ class HashMap(object):
         print("array: ", self.array)
 
 
-#TODO: try to implement custom hash function
-#TODO: ...
-#TODO: implement hash map like a binary tree
-
 
 def test_hashmap():
     hm = HashMap(10)
