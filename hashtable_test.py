@@ -74,3 +74,25 @@ def test_my_custom_hash_func():
     assert hm[3] == 3
     assert hm[4] == 5
     hm.dump()
+
+def test_my_custom_hash_func_wow():
+    def my_hash_function(key):
+        value = 0
+        for char in str(key):
+            value = value + ord(char)
+        return value
+    hm = HashMap(5, my_hash_function )
+    hm[0] = 0
+    hm[1] = 1
+    hm[2] = 2
+    hm[3] = 3
+    hm[4] = 5
+    hm['ackd'] = 3984
+    hm['b'] = 3984
+    hm['a'] = 3984
+    assert hm[0] == 0
+    assert hm[1] == 1
+    assert hm[2] == 2
+    assert hm[3] == 3
+    assert hm[4] == 5
+    hm.dump()
