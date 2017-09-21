@@ -18,11 +18,30 @@ class HashMap(object):
         key_list.append((key, value))
 
     def __getitem__(self, key):
+        return self._getitem_binary_search(key)
+
+    def _getitem_binary_search(self, key):
+        tree_size = len(self.tree)
+        if tree_size == 0:
+            return None
         hash_value = self.hash_function(key)
-        key_list = [x[1] for x in self.tree if x[0] == hash_value]
-        for item in key_list[0]:
+        def binary_search(elements, value):
+            if len(elements) == 0:
+                return None
+            slice_at = len(elements) // 2
+            print(slice_at)
+            if elements[slice_at][0] == value:
+                return elements[slice_at][1]
+            elif elements[slice_at] > value:
+                return binary_search(elements[:slice_at], value)
+            elif elements[slice_at] < value:
+                return binary_search(elements[slice_at:], value)
+
+        for item in binary_search(self.tree, hash_value):
             if item[0] == key:
                 return item[1]
+
+
 
     def dump(self):
         print("HashMap")
