@@ -83,3 +83,24 @@ def test_all_unique_v3():
 
 
 #1.2
+
+def is_permutation_v1(s1, s2):
+    '''
+    Check if s1 and s2 strings are permutations with other.
+
+        Time complexity: O(N*log(N) + N*log(N)) = O(2N*log(N)) ~= O(N*log(N)), where N is the size
+                         of len(s1) or len(s2), because if the size is different the function returns.
+        Space complexity: O(1) no extra space is necessary
+
+    :param s1:
+    :param s2:
+    :return:
+    '''
+    if len(s1) != len(s2):
+        return False
+    return True if sorted(s1) == sorted(s2) else False
+
+def test_is_permutation_v1():
+    assert is_permutation_v1('abc', 'cba') == True
+    assert is_permutation_v1('abb', 'abc') == False
+    assert is_permutation_v1('abcd', 'a') == False
