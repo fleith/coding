@@ -15,6 +15,8 @@
 '''
 
 #1.1
+from collections import defaultdict
+
 
 def all_unique_v1(string):
     '''Check if all char are unique using a set data structure to store every char
@@ -100,7 +102,67 @@ def is_permutation_v1(s1, s2):
         return False
     return True if sorted(s1) == sorted(s2) else False
 
+
+def is_permutation_v2(s1, s2, set_size=128):
+    '''Check if s1 and s2 strings are permutations with other.
+
+        Time complexity: O(N), where N is the size of string
+        Space complexity: O(K), where K is the size of char set
+
+    :param s1:
+    :param s2:
+    :param set_size:
+    :return:
+    '''
+    if len(s1) != len(s2):
+        return False
+    occurrences = [0] * set_size
+    for c in s1:
+        occurrences[ord(c)] += 1
+    for c in s2:
+        occurrences[ord(c)] -= 1
+        if occurrences[ord(c)] < 0:
+            return False
+    return True if not any(occurrences) else False
+
+
+def is_permutation_v3(s1, s2):
+    '''Check if s1 and s2 strings are permutations with other.
+
+        Time complexity: O(N), where N is the size of string
+        Space complexity: O(K), where K is the size of char set
+
+    :param s1:
+    :param s2:
+    :return:
+    '''
+    if len(s1) != len(s2):
+        return False
+    occurrences = defaultdict()
+    for c in s1:
+        if c not in occurrences:
+            occurrences[c] = 0
+        occurrences[c] += 1
+    for c in s2:
+        if c not in occurrences:
+            occurrences[c] = 0
+        occurrences[c] -= 1
+        if occurrences[c] < 0:
+            return False
+    return True if not any(occurrences.values()) else False
+
+
 def test_is_permutation_v1():
     assert is_permutation_v1('abc', 'cba') == True
     assert is_permutation_v1('abb', 'abc') == False
     assert is_permutation_v1('abcd', 'a') == False
+
+def test_is_permutation_v2():
+    assert is_permutation_v2('abc', 'cba') == True
+    assert is_permutation_v2('abb', 'abc') == False
+    assert is_permutation_v2('abcd', 'a') == False
+
+def test_is_permutation_v3():
+    assert is_permutation_v3('abc', 'cba') == True
+    assert is_permutation_v3('abb', 'abc') == False
+    assert is_permutation_v3('abcd', 'a') == False
