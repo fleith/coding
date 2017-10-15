@@ -69,6 +69,14 @@ def test_naive_search():
     _naive_iterations = 0
 
 
+#TODO: Implement this hash to RABIN-karp search
+# // ASCII a = 97, b = 98, r = 114.
+# hash("abr") = (97 × 1012) + (98 × 1011) + (114 × 1010) = 999,509
+# We can then compute the hash of the next substring, "bra", from the hash of "abr" by subtracting the number added for the first 'a' of "abr", i.e. 97 × 1012, multiplying by the base and adding for the last a of "bra", i.e. 97 × 1010. Like so:
+#
+# //             base   old hash    old 'a'         new 'a'
+# hash("bra") = [1011 × (999,509 - (97 × 1012))] + (97 × 1010) = 1,011,309
+
 def rabin_karp(string, pattern):
     '''Rabin–Karp string search algorithm
 
