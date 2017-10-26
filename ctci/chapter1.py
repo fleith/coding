@@ -14,7 +14,7 @@
 
 '''
 
-#1.1
+# 1.1) Is Unique.
 from collections import defaultdict
 
 
@@ -84,7 +84,7 @@ def test_all_unique_v3():
     assert all_unique_v3('1234567890!@#$%^&*()qdrwbjfup;[]\ashtgyneoi') == True
 
 
-#1.2
+# 1.2) Check permutation.
 
 def is_permutation_v1(s1, s2):
     '''
@@ -166,3 +166,40 @@ def test_is_permutation_v3():
     assert is_permutation_v3('abc', 'cba') == True
     assert is_permutation_v3('abb', 'abc') == False
     assert is_permutation_v3('abcd', 'a') == False
+
+# 1.3) URLify.
+
+def urlfy(s):
+    return s.replace(' ', '%20')
+
+def test_urlfy():
+    assert urlfy("Mr John Smith") == "Mr%20John%20Smith"
+
+
+# 1.4) Palindrome Permutation.
+
+def has_palindrome_permutation(s):
+    count_valid_chars = 0
+    save_chars = set()
+    s = s.lower().replace(' ', '')
+    for c in s:
+        if c in save_chars:
+            save_chars.remove(c)
+        else:
+            save_chars.add(c)
+        count_valid_chars += 1
+    if count_valid_chars % 2 == 0:
+        return len(save_chars) == 0
+    else:
+        return len(save_chars) == 1
+
+
+def test_palindrome_permutation():
+    assert has_palindrome_permutation("Tact Coa") == True
+    assert has_palindrome_permutation("aabbccxy") == False
+
+# 1.5) One Away.
+# 1.6) String Compression.
+# 1.7) Rotate Matrix.
+# 1.8) Zero Matrix.
+# 1.9) String Rotation.
