@@ -1,4 +1,6 @@
-#!/usr/bin/env python3
+'''Find single element in a list using the XOR method,
+    the result will be the single element.
+'''
 
 def find_single(elements):
     single = 0

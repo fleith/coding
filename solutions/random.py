@@ -12,7 +12,8 @@ def solution_0(N):
     # write your code in Python 2.7
     nbin = bin(N)[-N.bit_length():]
     m = re.findall('10+(?=1)', nbin)
-    return (len(max(m,key=len))-1) if len(m) > 0 else 0
+    return (len(max(m, key=len)) - 1) if len(m) > 0 else 0
+
 
 def test_binary_gap():
     assert solution_0(66561) == 9
@@ -20,6 +21,7 @@ def test_binary_gap():
     assert solution_0(6) == 0
     assert solution_0(328) == 2
     assert solution_0(5) == 1
+
 
 # Cyclic Rotation
 def solution_1(A, K):
@@ -29,20 +31,24 @@ def solution_1(A, K):
         rotated.insert(0, last)
     return rotated
 
+
 def solution_2(A, K):
     items = deque(A)
     items.rotate(K)
     return list(items)
 
+
 def test_solution_1():
     assert solution_2([3, 8, 9, 7, 6], 3) == [9, 7, 6, 3, 8]
     assert solution_2([-9, 0], 2) == [-9, 0]
+
 
 def solution_3(A):
     for item in Counter(A).items():
         if item[1] % 2:
             return item[0]
     return None
+
 
 def solution_3_b(A):
     elements = set()
@@ -53,15 +59,18 @@ def solution_3_b(A):
             elements.add(item)
     return elements.pop()
 
+
 def test_solution_3():
-    len(list([3,4,5]))
-    assert solution_3_b([9,3,9,3,9,7,9]) == 7
+    len(list([3, 4, 5]))
+    assert solution_3_b([9, 3, 9, 3, 9, 7, 9]) == 7
     assert solution_3_b([9, 3, 9, 3, 9, 7, 9, 7, 7]) == 7
+
 
 def frog_solution(x, y, d):
     jumps = (y - x) / d
     jumps += 1 if (y - x) % d else 0
     return jumps
+
 
 def missing_number(A):
     # if len(A) == 0:
@@ -70,11 +79,13 @@ def missing_number(A):
     missing = numbers.difference(A)
     return missing.pop() if len(missing) > 0 else None
 
+
 def test_missing_element():
-    assert missing_number([1,2,4]) == 3
+    assert missing_number([1, 2, 4]) == 3
     assert missing_number([]) == 1
     assert missing_number([2]) == 1
     assert missing_number([1]) == 2
+
 
 def tape_equilibrium(A):
     sum_a = A[0]
@@ -86,12 +97,14 @@ def tape_equilibrium(A):
         total = min(total, abs(sum_a - sum_b))
     return total
 
+
 def test_tape_equilibrium():
     assert tape_equilibrium([3, 1, 2, 4, 3]) == 1
     assert tape_equilibrium([2, 100]) == 98
     assert tape_equilibrium([-1000, 1000]) == 2000
     assert tape_equilibrium([2, 100]) == 98
     assert tape_equilibrium([2, 100]) == 98
+
 
 def equilibrium(A):
     left = 0
@@ -106,6 +119,7 @@ def equilibrium(A):
         return len(A) - 1
     return -1
 
+
 def test_equilibrium():
     assert equilibrium([1, 2, 1]) == 1
     assert equilibrium([1082132608, 0, 1082132608]) == 1
@@ -115,10 +129,12 @@ def test_equilibrium():
     assert equilibrium([1, 2, -3, 0]) == 3
     assert equilibrium([0, -1]) == 1
     assert equilibrium([0, 1]) == 1
-    assert equilibrium( [-1, 0, -1]) == 1
-    assert equilibrium( [-1, 1, 0]) == 2
+    assert equilibrium([-1, 0, -1]) == 1
+    assert equilibrium([-1, 1, 0]) == 2
     # assert equilibrium([0]) == -1
     # assert equilibrium([]) == -1
+
+
 #
 # def solution(A):
 #     # write your code in Python 2.7
@@ -200,4 +216,4 @@ def test_solution():
     assert solution([[5, 4, 4], [4, 3, 4], [3, 2, 4], [2, 2, 2], [3, 3, 4], [1, 4, 4], [4, 1, 1]]) == 11
     # assert solution([3, 5, 6, 3, 3, 5, 3, 5, 6, 3, 3, 5]) == 22
     # assert solution([3, 3]) == 1
-    
+
