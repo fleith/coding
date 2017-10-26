@@ -17,14 +17,15 @@ taIl
 '''
 from collections import OrderedDict
 
-import dictionary
+# import dictionary
 
 first = 'HEAD'
 last = 'TAIL'
 
 def is_valid(word):
-    dict = dictionary.Dictionary()
-    return dict.isInDictionary(word)
+    return True
+    # dict = dictionary.Dictionary()
+    # return dict.isInDictionary(word)
 
 print(is_valid('heal'))
 
