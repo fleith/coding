@@ -12,17 +12,21 @@ func hello() {
 }
 
 func main() {
+	t0 := time.Now()
 	greetings := make(chan bool)
 
-	go func() {
-		hello()
-		greetings <- true
+	iterations := 5000
+	for i := 0; i < iterations; i++ {
+		go func() {
+			hello()
+			greetings <- true
 		}()
+	}
 
-	go func() {
-		hello()
-		greetings <- true
-	}()
+	for i := 0; i < iterations; i++ {
+		fmt.Println(i, <-greetings)
+	}
 
-	fmt.Println(<-greetings, <-greetings)
+	t1 := time.Since(t0)
+	fmt.Println(t1)
 }
