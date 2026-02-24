@@ -2,6 +2,8 @@
 
 Repository for learning and practicing data structures and algorithms in Python.
 
+[![CI](https://github.com/fleith/coding/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/fleith/coding/actions/workflows/ci.yml)
+
 ## Goals
 - Keep implementations simple and interview-friendly.
 - Track learning progress by topic.
