@@ -1,5 +1,5 @@
 from src.algorithms.sorting.merge_sort import merge_sort
-
+import random
 
 def test_merge_sort_empty():
     assert merge_sort([]) == []
@@ -15,3 +15,8 @@ def test_merge_sort_general():
 
 def test_merge_sort_duplicates():
     assert merge_sort([2, 2, 1, 1, 3]) == [1, 1, 2, 2, 3]
+
+
+def test_merge_sort_long_list():
+    nums = [random.randint(0, 100000) for _ in range(10000)]
+    assert merge_sort(nums) == sorted(nums)

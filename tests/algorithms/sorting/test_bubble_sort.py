@@ -1,3 +1,5 @@
+import random
+
 from src.algorithms.sorting.bubble_sort import bubble_sort
 
 
@@ -15,3 +17,7 @@ def test_bubble_sort_general():
 
 def test_bubble_sort_duplicates():
     assert bubble_sort([3, 1, 2, 3, 1]) == [1, 1, 2, 3, 3]
+
+def test_bubble_sort_long_list():
+    nums = [random.randint(0, 100000) for _ in range(10000)]
+    assert bubble_sort(nums) == sorted(nums)
